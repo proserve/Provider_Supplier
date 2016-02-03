@@ -1,4 +1,3 @@
-
 <div class="form">
 
     <?php
@@ -10,7 +9,7 @@
     ));
     ?>
 
-<?php echo '<p class="help-block">' . Yii::t('app', 'Fields with') . 
+    <?php echo '<p class="help-block">' . Yii::t('app', 'Fields with') .
         ' <span class="required">*</span> ' . Yii::t('app', 'are required') . '.</p><br>' ?>
 
     <div class="flash-Error">
@@ -28,7 +27,7 @@
     <?php echo $form->errorSummary($model); ?>
 
     <?php echo $form->dropDownListRow($model, 'id', AppelOffre::model()->getAllReadyAppelOffre()); ?>
-    
+
 
     <div class="form-actions">
         <?php
@@ -41,8 +40,8 @@
     </div>
     <?php
     Yii::app()->clientScript->registerScript(
-            'myHideEffect', '$(".flash-success").animate({opacity: 1.0}, 3000).fadeOut("slow");', 
-            CClientScript::POS_READY
+        'myHideEffect', '$(".flash-success").animate({opacity: 1.0}, 3000).fadeOut("slow");',
+        CClientScript::POS_READY
     );
     ?>
     <div class="flash-success">
@@ -54,6 +53,7 @@
             'alerts' => array(// configurations per alert type
                 'success' => array('block' => true, 'fade' => true, 'closeText' => '×'), // success, info, warning, error or danger
             ),
-        )); $this->endWidget();?>
+        ));
+        $this->endWidget(); ?>
 
-</div>
+    </div>

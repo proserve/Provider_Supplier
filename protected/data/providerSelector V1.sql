@@ -22,10 +22,10 @@ SET time_zone = "+00:00";
 CREATE DATABASE IF NOT EXISTS `new_schema` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
 USE `new_schema`;
 --
--- Base de données: `providerselector`
+-- Base de données: `provider`
 --
-CREATE DATABASE IF NOT EXISTS `providerselectorV1` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
-USE `providerselectorV1`;
+# CREATE DATABASE IF NOT EXISTS `provider` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
+USE `provider`;
 
 -- --------------------------------------------------------
 
@@ -37,7 +37,11 @@ CREATE TABLE IF NOT EXISTS `ps_appel_offre` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `reference` varchar(256) DEFAULT NULL,
   `number` int(10) NOT NULL,
+  `finance_rate` int(4) DEFAULT 50,
+  `technique_rate` int(4) DEFAULT 50,
   `titre` varchar(255) DEFAULT NULL,
+  `type` varchar(255) DEFAULT NULL,
+  `publish` BOOLEAN DEFAULT FALSE ,
   `dateDebut` date DEFAULT NULL,
   `dateFin` date DEFAULT NULL,
   `description` text,
@@ -50,9 +54,9 @@ CREATE TABLE IF NOT EXISTS `ps_appel_offre` (
 -- Contenu de la table `ps_appel_offre`
 --
 
-INSERT INTO `ps_appel_offre` (`id`, `reference`, `number`, `titre`, `dateDebut`, `dateFin`, `description`, `condition`) VALUES
+/*INSERT INTO `ps_appel_offre` (`id`, `reference`, `number`, `titre`, `dateDebut`, `dateFin`, `description`, `condition`) VALUES
 (1, 'test', 125, 'test', '2013-08-15', '1900-12-28', '', ''),
-(3, 'testyy', 12555, 'testijij', '0000-00-00', '2013-09-04', 'jhh', 'kjkj');
+(3, 'testyy', 12555, 'testijij', '0000-00-00', '2013-09-04', 'jhh', 'kjkj');*/
 
 -- --------------------------------------------------------
 
@@ -72,9 +76,9 @@ CREATE TABLE IF NOT EXISTS `ps_categorie` (
 -- Contenu de la table `ps_categorie`
 --
 
-INSERT INTO `ps_categorie` (`id`, `name`, `description`) VALUES
+/*INSERT INTO `ps_categorie` (`id`, `name`, `description`) VALUES
 (1, 'finance', ''),
-(2, 'technique', '');
+(2, 'technique', '');*/
 
 -- --------------------------------------------------------
 
@@ -120,7 +124,7 @@ CREATE TABLE IF NOT EXISTS `ps_criteria` (
 -- Contenu de la table `ps_criteria`
 --
 
-INSERT INTO `ps_criteria` (`id`, `name`, `description`) VALUES
+/*INSERT INTO `ps_criteria` (`id`, `name`, `description`) VALUES
 (1, 'Speed', 'Duration ...'),
 (2, 'Mantenance & Support', ''),
 (4, 'Services Quality', ''),
@@ -128,7 +132,7 @@ INSERT INTO `ps_criteria` (`id`, `name`, `description`) VALUES
 (6, 'Availability', ''),
 (7, 'Experience', ''),
 (8, 'Product Quality', ''),
-(12, 'test', 'test');
+(12, 'test', 'test');*/
 
 -- --------------------------------------------------------
 
@@ -147,8 +151,8 @@ CREATE TABLE IF NOT EXISTS `ps_criteria_categorie` (
 -- Contenu de la table `ps_criteria_categorie`
 --
 
-INSERT INTO `ps_criteria_categorie` (`categorie_id`, `criteria_id`) VALUES
-(1, 12);
+/*INSERT INTO `ps_criteria_categorie` (`categorie_id`, `criteria_id`) VALUES
+(1, 12);*/
 
 -- --------------------------------------------------------
 
@@ -171,11 +175,11 @@ CREATE TABLE IF NOT EXISTS `ps_evaluator` (
 -- Contenu de la table `ps_evaluator`
 --
 
-INSERT INTO `ps_evaluator` (`id`, `fist_name`, `last_name`, `function`, `username`, `psswd_hash`) VALUES
+/*INSERT INTO `ps_evaluator` (`id`, `fist_name`, `last_name`, `function`, `username`, `psswd_hash`) VALUES
 (7, 'Hamid', 'HAMADOUCHE', 'Procurment', 'root', '$1$3j2.OY5.$on4q4uDZJnlmbY0/73rW.0'),
 (8, 'Khalid', 'GHIBOUB', 'IT information.', 'proserve', '$1$eZ2.Pt1.$UXsQ6TKe0w1XlH9aCPXov/'),
 (9, 'Abdelatif', 'CHEBOUB', 'General Director -SEO.', 'admin', '$1$9l0.cM4.$ypxHC.0F3IfiuWSsP6b2P1'),
-(15, '125', '125', 'IT information.', 'ttr', '$1$1T4..V2.$CFsfa2lfE0iQi9E1DceCM1');
+(15, '125', '125', 'IT information.', 'ttr', '$1$1T4..V2.$CFsfa2lfE0iQi9E1DceCM1')*/;
 
 -- --------------------------------------------------------
 
@@ -194,8 +198,8 @@ CREATE TABLE IF NOT EXISTS `ps_evaluator_categorie` (
 -- Contenu de la table `ps_evaluator_categorie`
 --
 
-INSERT INTO `ps_evaluator_categorie` (`categorie_id`, `evaluator_id`) VALUES
-(2, 15);
+/*INSERT INTO `ps_evaluator_categorie` (`categorie_id`, `evaluator_id`) VALUES
+(2, 15);*/
 
 -- --------------------------------------------------------
 
@@ -215,7 +219,7 @@ CREATE TABLE IF NOT EXISTS `ps_evaluator_criteria` (
 -- Contenu de la table `ps_evaluator_criteria`
 --
 
-INSERT INTO `ps_evaluator_criteria` (`evaluator_id`, `criteria_id`, `mark`) VALUES
+/*INSERT INTO `ps_evaluator_criteria` (`evaluator_id`, `criteria_id`, `mark`) VALUES
 (7, 1, 9),
 (7, 2, 7),
 (7, 4, 9),
@@ -236,7 +240,7 @@ INSERT INTO `ps_evaluator_criteria` (`evaluator_id`, `criteria_id`, `mark`) VALU
 (9, 5, 9),
 (9, 6, 5),
 (9, 7, 3),
-(9, 8, 7);
+(9, 8, 7)*/;
 
 -- --------------------------------------------------------
 
@@ -273,11 +277,11 @@ CREATE TABLE IF NOT EXISTS `ps_provider` (
 -- Contenu de la table `ps_provider`
 --
 
-INSERT INTO `ps_provider` (`id`, `name`, `postal_address`, `post_code`, `email`, `phone`, `finance`) VALUES
+/*INSERT INTO `ps_provider` (`id`, `name`, `postal_address`, `post_code`, `email`, `phone`, `finance`) VALUES
 ('F1', 'ghiboub', '', '', 'ak_ghiboub@hotmail.co.uk', '', 1000),
 ('F2', 'hamid', '', '', 'ak_ghiboub@esi.dz', '', 950),
 ('F3', 'test', '', '', 'ak@eki.dz', '', 900),
-('F4', 'test', 'test', '', 'test@test.test', '', 960);
+('F4', 'test', 'test', '', 'test@test.test', '', 960);*/
 
 -- --------------------------------------------------------
 
@@ -300,7 +304,7 @@ CREATE TABLE IF NOT EXISTS `ps_provider_compare` (
 -- Contenu de la table `ps_provider_compare`
 --
 
-INSERT INTO `ps_provider_compare` (`provider_a_id`, `provider_b_id`, `criteria_id`, `mark`, `comp`) VALUES
+/*INSERT INTO `ps_provider_compare` (`provider_a_id`, `provider_b_id`, `criteria_id`, `mark`, `comp`) VALUES
 ('F1', 'F2', 5, 5, '>'),
 ('F1', 'F2', 8, 3, '<'),
 ('F1', 'F3', 8, 2, '<'),
@@ -335,7 +339,7 @@ INSERT INTO `ps_provider_compare` (`provider_a_id`, `provider_b_id`, `criteria_i
 ('F3', 'F4', 6, 5.25, '>'),
 ('F3', 'F4', 8, 5, '>'),
 ('F4', 'F1', 1, 9, '>'),
-('F4', 'F3', 1, 9, '>');
+('F4', 'F3', 1, 9, '>')*/;
 
 -- --------------------------------------------------------
 
@@ -358,7 +362,7 @@ CREATE TABLE IF NOT EXISTS `ps_user_log` (
 -- Contenu de la table `ps_user_log`
 --
 
-INSERT INTO `ps_user_log` (`id`, `username`, `ipaddress`, `logtime`, `controller`, `action`, `details`) VALUES
+/*INSERT INTO `ps_user_log` (`id`, `username`, `ipaddress`, `logtime`, `controller`, `action`, `details`) VALUES
 (1, 'proserve', '127.0.0.1', '2013-09-07 20:59:26', 'Evaluator', 'CREATE', 'User proserve created Evaluator[5].'),
 (2, 'proserve', '127.0.0.1', '2013-09-07 21:02:31', 'Evaluator', 'Update', 'User proserve changed username for Evaluator[5].'),
 (3, 'proserve', '127.0.0.1', '2013-09-07 21:02:54', 'Evaluator', 'Update', 'User proserve changed username for Evaluator[5].'),
@@ -691,7 +695,7 @@ INSERT INTO `ps_user_log` (`id`, `username`, `ipaddress`, `logtime`, `controller
 (330, 'root', '127.0.0.1', '2013-09-18 21:18:21', 'Criteria', 'DELETE', 'User root deleted Criteria[9].'),
 (331, 'root', '127.0.0.1', '2013-09-18 21:19:08', 'Criteria', 'CREATE', 'User root created Criteria[11].'),
 (332, 'root', '127.0.0.1', '2013-09-18 21:19:34', 'Criteria', 'DELETE', 'User root deleted Criteria[11].'),
-(333, 'root', '127.0.0.1', '2013-09-18 21:20:48', 'Criteria', 'CREATE', 'User root created Criteria[12].');
+(333, 'root', '127.0.0.1', '2013-09-18 21:20:48', 'Criteria', 'CREATE', 'User root created Criteria[12].')*/;
 
 --
 -- Contraintes pour les tables exportées
@@ -742,10 +746,10 @@ ALTER TABLE `ps_participe`
 --
 -- Contraintes pour la table `ps_provider_compare`
 --
-se-- Base de données: `test`
+-- Base de données: `test`
 --
-CREATE DATABASE IF NOT EXISTS `test` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
-USE `test`;
+# CREATE DATABASE IF NOT EXISTS `test` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
+# USE `test`;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

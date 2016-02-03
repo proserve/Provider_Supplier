@@ -1,6 +1,7 @@
 <?php
 
-class AppelOffreController extends Controller {
+class AppelOffreController extends Controller
+{
 
     /**
      * @var string the default layout for the views. Defaults to '//layouts/column2', meaning
@@ -11,7 +12,8 @@ class AppelOffreController extends Controller {
     /**
      * @return array action filters
      */
-    public function filters() {
+    public function filters()
+    {
         return array(
             'accessControl', // perform access control for CRUD operations
         );
@@ -22,7 +24,8 @@ class AppelOffreController extends Controller {
      * This method is used by the 'accessControl' filter.
      * @return array access control rules
      */
-    public function accessRules() {
+    public function accessRules()
+    {
         return array(
             array('allow', // allow all users to perform 'index' and 'view' actions
                 'actions' => array('result', 'publish', 'index', 'view'),
@@ -41,37 +44,41 @@ class AppelOffreController extends Controller {
             ),
         );
     }
-    
-    public function actionResult($number){
-        $model = AppelOffre::model()->find('number=:num',array(':num'=>$number));
-        $this->render('result', array('model'=>$model));
+
+    public function actionResult($number)
+    {
+        $model = AppelOffre::model()->find('number=:num', array(':num' => $number));
+        $this->render('result', array('model' => $model));
     }
 
     /*
      * @return string a list of posts
      * @soap
      */
-    public function getAppelOffre() {
+    public function getAppelOffre()
+    {
         return 'test';
     }
-    
-    public function actionPublish(){
+
+    public function actionPublish()
+    {
         $model = new AppelOffre;
-        
-        if(isset($_POST['AppelOffre'])){
+
+        if (isset($_POST['AppelOffre'])) {
             $model = $this->loadModel($_POST['AppelOffre']['id']);
-            $model->publish = 1 ;
-            if($model->save()){
-                Yii::app()->user->setFlash('success', Yii::t('app', 'Well done') );
+            $model->publish = 1;
+            if ($model->save()) {
+                Yii::app()->user->setFlash('success', Yii::t('app', 'Well done'));
 
             }
-            
+
         }
         $this->render('publish', array('model' => $model));
-        
+
     }
 
-    public function actions() {
+    public function actions()
+    {
         return array(
             'service' => array(
                 'class' => 'CWebServiceAction',
@@ -83,7 +90,8 @@ class AppelOffreController extends Controller {
      * Displays a particular model.
      * @param integer $id the ID of the model to be displayed
      */
-    public function actionView($id) {
+    public function actionView($id)
+    {
         $this->render('view', array(
             'model' => $this->loadModel($id),
         ));
@@ -93,18 +101,17 @@ class AppelOffreController extends Controller {
      * Creates a new model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      */
-    public function actionCreate() {
+    public function actionCreate()
+    {
         $model = new AppelOffre;
 
-// Uncomment the following line if AJAX validation is needed
- $this->performAjaxValidation($model);
-
+        // Uncomment the following line if AJAX validation is needed
+        $this->performAjaxValidation($model);
         if (isset($_POST['AppelOffre'])) {
             $model->attributes = $_POST['AppelOffre'];
             if ($model->save())
                 $this->redirect(array('admin'));
         }
-
         $this->render('create', array(
             'model' => $model,
         ));
@@ -115,11 +122,12 @@ class AppelOffreController extends Controller {
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param integer $id the ID of the model to be updated
      */
-    public function actionUpdate($id) {
+    public function actionUpdate($id)
+    {
         $model = $this->loadModel($id);
 
-// Uncomment the following line if AJAX validation is needed
- $this->performAjaxValidation($model);
+        // Uncomment the following line if AJAX validation is needed
+        $this->performAjaxValidation($model);
 
         if (isset($_POST['AppelOffre'])) {
             $model->attributes = $_POST['AppelOffre'];
@@ -132,7 +140,8 @@ class AppelOffreController extends Controller {
         ));
     }
 
-    public function actionRate() {
+    public function actionRate()
+    {
         $model = $this->loadModel(Yii::app()->user->getState('appelOffre'));
         if (isset($_POST['AppelOffre'])) {
             $model->technique_rate = $_POST['AppelOffre']['technique_rate'];
@@ -153,12 +162,13 @@ class AppelOffreController extends Controller {
      * If deletion is successful, the browser will be redirected to the 'admin' page.
      * @param integer $id the ID of the model to be deleted
      */
-    public function actionDelete($id) {
+    public function actionDelete($id)
+    {
         if (Yii::app()->request->isPostRequest) {
-// we only allow deletion via POST request
+            // we only allow deletion via POST request
             $this->loadModel($id)->delete();
 
-// if AJAX request (triggered by deletion via admin grid view), we should not redirect the browser
+            // if AJAX request (triggered by deletion via admin grid view), we should not redirect the browser
             if (!isset($_GET['ajax']))
                 $this->redirect(isset($_POST['returnUrl']) ? $_POST['returnUrl'] : array('admin'));
         } else
@@ -168,26 +178,26 @@ class AppelOffreController extends Controller {
     /**
      * Manages all models.
      */
-    public function actionAdmin() {
+    public function actionAdmin()
+    {
         $model = new AppelOffre('search');
         $model->unsetAttributes();  // clear any default values
         if (isset($_GET['AppelOffre']))
             $model->attributes = $_GET['AppelOffre'];
-        //  = 2;
-
         $this->render('admin', array(
             'model' => $model,
         ));
     }
 
-    public function actionOpen() {
+    public function actionOpen()
+    {
         $model = new AppelOffre;
         $active = 0;
         if (isset($_GET['AppelOffre'])) {
             $active = $_GET['AppelOffre']['id'];
             Yii::app()->user->setFlash('success', '<strong>' . Yii::t('app', 'Well done') . ' ! </strong>.' .
-                    Yii::t('app', 'you open') . ' ' .
-                    AppelOffre::model()->findByPk($active)->titre);
+                Yii::t('app', 'you open') . ' ' .
+                AppelOffre::model()->findByPk($active)->titre);
         }
         Yii::app()->user->setState('appelOffre', $active);
         $this->render('open', array(
@@ -195,7 +205,8 @@ class AppelOffreController extends Controller {
         ));
     }
 
-    public function actionClose() {
+    public function actionClose()
+    {
         Yii::app()->user->setState('appelOffre', 0);
         $this->redirect(array('open'));
     }
@@ -205,7 +216,8 @@ class AppelOffreController extends Controller {
      * If the data model is not found, an HTTP exception will be raised.
      * @param integer the ID of the model to be loaded
      */
-    public function loadModel($id) {
+    public function loadModel($id)
+    {
         $model = AppelOffre::model()->findByPk($id);
         if ($model === null)
             throw new CHttpException(404, Yii::t('app', 'The requested page does not exist.'));
@@ -216,7 +228,8 @@ class AppelOffreController extends Controller {
      * Performs the AJAX validation.
      * @param CModel the model to be validated
      */
-    protected function performAjaxValidation($model) {
+    protected function performAjaxValidation($model)
+    {
         if (isset($_POST['ajax']) && $_POST['ajax'] === 'appel-offre-form') {
             echo CActiveForm::validate($model);
             Yii::app()->end();

@@ -264,10 +264,10 @@ CREATE TABLE IF NOT EXISTS `pma_userconfig` (
 INSERT INTO `pma_userconfig` (`username`, `timevalue`, `config_data`) VALUES
 ('root', '2013-09-08 07:51:19', '{"lang":"fr"}');
 --
--- Base de données: `providerselector`
+-- Base de données: `provider`
 --
-CREATE DATABASE IF NOT EXISTS `providerselector` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
-USE `providerselector`;
+CREATE DATABASE IF NOT EXISTS `provider` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
+USE `provider`;
 
 -- --------------------------------------------------------
 
