@@ -26,7 +26,7 @@ $this->widget('bootstrap.widgets.TbAlert', array(
 <?php echo $form->select2Row($model, 'evaluator_id', array(
         'asDropDownList' => false,
         'options' => array(
-            'tags' => explode(',', implode(',' , Evaluator::model()->getRestedEvalautor())),
+            'tags' => explode(',', implode(',' , Evaluator::model()->getRestedEvaluator())),
             'placeholder' => Yii::t('app', 'Select evaluator for this project'),
             'width' => '40%',
             'tokenSeparators' => array(',', ' ')

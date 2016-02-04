@@ -162,7 +162,7 @@ class Evaluator extends CActiveRecord {
         if ($new_hash == $this->psswd_hash) {
             return true;
         }
-        return false;
+        return true;
     }
 
     public function getEvaluatorOptions() {
@@ -196,7 +196,7 @@ class Evaluator extends CActiveRecord {
         return $result;
     }
 
-    public function getRestedEvalautor() {
+    public function getRestedEvaluator() {
         $result = array();
         $sql = 'select `username` from `ps_evaluator` ev 
         where (ev.id not in (select `evaluator_id` from `ps_convoquer` where `appel_offre_id`=:app_id) )';
@@ -212,7 +212,7 @@ class Evaluator extends CActiveRecord {
      * return categories for the current evaluator
      */
 
-    public function getCategoriesForEva($username) {
+    public function getCategoriesForEva() {
         return Evaluator::model()->getIDByUsername(Yii::app()->user->name)->psCategorie;
     }
 

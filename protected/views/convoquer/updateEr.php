@@ -10,7 +10,7 @@ echo '<br>';
     'size'=>'large',
     'label'=>Yii::t('app2', 'View evaluator that you can add'),
             'htmlOptions'=>array(
-	  'onclick'=>'js:bootbox.alert("'.implode('<br>', Evaluator::model()->getRestedEvalautor()).'")'
+	  'onclick'=>'js:bootbox.alert("'.implode('<br>', Evaluator::model()->getRestedEvaluator()).'")'
   ),
 ));
 

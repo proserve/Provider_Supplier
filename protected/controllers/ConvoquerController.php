@@ -118,7 +118,7 @@ class ConvoquerController extends Controller {
             $model->evaluator_id ='';
                 
         }
-        if(count(Evaluator::model()->getRestedEvalautor())==0){
+        if(count(Evaluator::model()->getRestedEvaluator())==0){
           $this->render('addEr');  
         }else
         $this->render('add', array(

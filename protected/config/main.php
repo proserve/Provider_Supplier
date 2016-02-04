@@ -1,4 +1,9 @@
 <?php
+define('DB_HOST', getenv('OPENSHIFT_MYSQL_DB_HOST'));
+define('DB_PORT', getenv('OPENSHIFT_MYSQL_DB_PORT'));
+define('DB_USER', getenv('OPENSHIFT_MYSQL_DB_USERNAME'));
+define('DB_PASS', getenv('OPENSHIFT_MYSQL_DB_PASSWORD'));
+define('DB_NAME', getenv('OPENSHIFT_GEAR_NAME'));
 
 $localConfig = array(
     'components' => array(
@@ -54,10 +59,10 @@ $remoteConfig = array(
     'components' => array(
 
         'db' => array(
-            'connectionString' => 'mysql:host=mysql.hostinger.ae;dbname=u909221893_vmana',
+            'connectionString' => 'mysql:host=127.5.149.3;port=3306;dbname=provider' ,
             'emulatePrepare' => true,
-            'username' => 'u909221893_root',
-            'password' => '123456',
+            'username' => "adminMcWSKSH",
+            'password' => "AYPiMDU6YRxL",
             'charset' => 'utf8',
             'tablePrefix' => 'ps_',
 
@@ -77,7 +82,7 @@ $remoteConfig = array(
             // use 'site/error' action to display errors
             'errorAction' => 'site/error',
         ),
-        'log' => array(
+        /*'log' => array(
             'class' => 'CLogRouter',
             'routes' => array(
                 array(
@@ -85,7 +90,7 @@ $remoteConfig = array(
                     'ipFilters' => array('127.0.0.1', '192.168.1.215'),
                 ),
             ),
-        ),
+        ),*/
     ),
 );
 $config = array(
